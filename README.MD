@@ -50,3 +50,8 @@ or with curl:
  
     docker-compose down
 
+
+### Authenticating with NGROK
+Ngrok.com has some restrictive limits on unauthenticated processes.  I *HIGHLY* recommend signing up for a free account and using the `docker-compose-authenticated.yml` file to pass in your authtoken.
+
+    docker-compose -f ./docker-compose-authenticated.yml up -d --build
