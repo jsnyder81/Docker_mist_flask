@@ -4,11 +4,11 @@ WORKDIR /usr/src/app
 ENV PYTHONPATH "${PYTHONPATH}:/usr/src/app"
 
 
-ADD ./receiver_configurator/MistSystems.py /usr/src/app
-ADD ./receiver_configurator/ngrok_wrapper.py /usr/src/app
-ADD ./receiver_configurator/requirements.txt /usr/src/app
+ADD ./MistSystems.py /usr/src/app
+ADD ./ngrok_wrapper.py /usr/src/app
+ADD ./requirements.txt /usr/src/app
 
 RUN pip install --no-cache-dir -r requirements.txt
-ADD ./receiver_configurator/receiver_setup.py /usr/src/app/receiver_setup.py
+ADD ./receiver_setup.py /usr/src/app/receiver_setup.py
 
 CMD [ "python", "/usr/src/app/receiver_setup.py"]
