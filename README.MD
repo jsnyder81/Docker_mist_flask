@@ -19,16 +19,29 @@ Tested with
 Docker Desktop 2.1.5 (on Mac)
 docker-compose 1.24.1
 
+### Environment Variables
+
+    export MIST_API=Your-Mist-API-Key
+    export MIST_ORG=Your-Mist-Org-ID
+    export MIST_SITE=Your-Mist-Site-ID
+ 
+ ### Optional Authenticated NGROK
+ 
+    NGROK_AUTH=Your-NGROK-Auth-Token
 
 ### Getting Started
 You can start the project
-    `docker-compose up -d --build`
+    docker-compose up -d --build
 
 You can check the status of your ngrok tunnel by hitting 
 
-    `http://< IP of Docker Host >:4040`
+    http://< IP of Docker Host >:4040
 
 or with curl:
 
-    `curl http://127.0.0.1:4040/api/tunnels`
+    curl http://127.0.0.1:4040/api/tunnels
+    
+ ### Stopping the Webhook
+ 
+    docker-compose down
 
