@@ -1,8 +1,13 @@
 # Mist Flask Receiver
 This project is a sample project leveraging docker to easily spin up a webhook receiver for use with the mist_webhook.
+This project is not intended to be a production application.  Simply an simplified example for people trying to work with Mist webhooks.
+
+THIS IS A WORK IN PROGRESS
+
 
 ### Flask : mist_flask
 mist_flask.py is a simple flask application.  You should modify this in order to handle what you want with the inbound webhook.  This is set to run on port 5000.
+During the build of this container, it copies the mist_flask.py file to the container and sets it to run on start.
 
 ### Inbound Proxy: ngrok
 This leverages ngrok to spin up an inbound proxy.
