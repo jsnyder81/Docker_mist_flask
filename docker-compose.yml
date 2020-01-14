@@ -16,14 +16,14 @@ services:
   # Define an mist_flask service
   mist_flask:
     build:
-      context: .
-      dockerfile: mist_receiver/dockerfile
+      context: ./mist_receiver/
+      dockerfile: dockerfile
     ports:
       - "5000:5000"
   receiver_configurator:
     build:
-      context: .
-      dockerfile: receiver_configurator/dockerfile
+      context: ./receiver_configurator/
+      dockerfile: dockerfile
     environment:
       - MIST_API=$MIST_API
       - MIST_ORG=$MIST_ORG
