@@ -12,7 +12,7 @@ services:
       - /bin/sh
       - -c
       - |
-        ngrok http mist_flask:5000 authtoken $NGROK_AUTH
+        ngrok http mist_flask:5000 --authtoken $NGROK_AUTH
   # Define an mist_flask service
   mist_flask:
     build:
