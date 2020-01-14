@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  # Define a ngrok service
+  ngrok:
+    image: wernight/ngrok
+    links:
+      - mist_flask
+    ports:
+      - "4040:4040/tcp"
+    command:
+      - /bin/sh
+      - -c
+      - |
+        ngrok http mist_flask:5000
+  # Define an mist_flask service
+  mist_flask:
+    build:
+      context: .
+      dockerfile: mist_receiver/dockerfile
+    ports:
+      - "5000:5000"
+  receiver_configurator:
+    build:
+      context: .
+      dockerfile: receiver_configurator/dockerfile
+    environment:
+      - MIST_API=$MIST_API
+      - MIST_ORG=$MIST_ORG
+      - MIST_SITE=$MIST_SITE
+    depends_on:
+      - ngrok
