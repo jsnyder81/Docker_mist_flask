@@ -1,0 +1,9 @@
+from python:3.7
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+ADD ./requirements.txt /usr/src/app
+RUN pip install --no-cache-dir -r requirements.txt
+ADD ./mist_flask.py /usr/src/app/mist_flask.py
+
+CMD [ "python", "/usr/src/app/mist_flask.py"]
