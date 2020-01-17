@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+  # Define a ngrok service
+  ngrok:
+    image: wernight/ngrok
+    links:
+      - splunk
+    ports:
+      - "4040:4040/tcp"
+    command:
+      - /bin/sh
+      - -c
+      - |
+        ngrok http splunk:8088 --authtoken $NGROK_AUTH
+  #  receiver_configurator:
+#    build:
+#      context: ./receiver_configurator/
+#      dockerfile: dockerfile
+#    environment:
+#      - MIST_API=$MIST_API
+#      - MIST_ORG=$MIST_ORG
+#      - MIST_SITE=$MIST_SITE
+#    depends_on:
+#      - ngrok
+  #Define a splunk instance
+  splunk:
+    image: splunk/splunk:latest
+    ports:
+      - "8000:8000/tcp"
+      - "8088:8088/tcp"
+    volumes:
+      - ./defaults:/tmp/defaults
+      - ./HEC_config/local/inputs.conf:/opt/splunk/etc/apps/splunk_httpinput/local/inputs.conf:rw
+      - ./Search_config/local/inputs.conf:/opt/splunk/etc/apps/search/local/inputs.conf:rw
+#      - ./opt-splunk-var:/opt/splunk/var
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_LICENSE_URI=Free
+      - SPLUNK_PASSWORD=$SPLUNK_PASSWORD
+  mist_receiver_config:
+    build:
+      context: ../mist_receiver_config/
+      dockerfile: dockerfile
+    environment:
+      - MIST_API=$MIST_API
+      - MIST_ORG=$MIST_ORG
+      - MIST_SITE=$MIST_SITE
+      - SPLUNK_TOKEN=$SPLUNK_TOKEN
+    depends_on:
+      - ngrok
+
