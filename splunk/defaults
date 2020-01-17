@@ -1,0 +1,16 @@
+Splunk:
+        opt: /opt
+        home: /opt/splunk
+        user: splunk
+        group: splunk
+        exec: /opt/splunk/bin/splunk
+        pid: /opt/splunk/var/run/splunk/splunkd.pid
+        svc_port: 8089
+        s2s_port: 9997
+        http_port: 8000
+        hec_port: 8088
+        hec_disabled: 0
+        hec_enableSSL: 0
+        #The hec_token here is used for INGESTION only. By that I mean receiving Splunk events.
+        #Setting up your environment to forward events out of the cluster is another matter entirely
+        hec_token: 653a504c-50a2-4ec5-ada7-0c433eb4a802

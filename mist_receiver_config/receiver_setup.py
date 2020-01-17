@@ -7,7 +7,6 @@ import os
 import signal
 
 def cleanup(signalNumber, frame):
-    print("CAUGHT SIG-TERM")
     mist_apikey = os.environ['MIST_API']
     mist_site = os.environ['MIST_SITE']
     webhook_id = os.environ['MIST_WEBHOOK_ID']
@@ -22,13 +21,17 @@ def main():
     mist_org = os.environ['MIST_ORG']
     mist_site = os.environ['MIST_SITE']
     ngrok_url = NGROK.Get_NGROK_Tunnel()
-    webhook = Mist.CreateWebhook(mist_site, ngrok_url, mist_apikey)
+    if os.environ['SPLUNK_TOKEN'] != "":
+        webhook = Mist.CreateWebhook_splunk(mist_site, ngrok_url, mist_apikey, os.environ['SPLUNK_TOKEN'])
+        print("SPLUNK WEBHOOK")
+    else:
+        print(os.environ)
+        webhook = Mist.CreateWebhook(mist_site, ngrok_url, mist_apikey)
     webhook_id = webhook.json()['id']
     os.environ['MIST_WEBHOOK_ID'] = webhook_id
     signal.signal(signal.SIGTERM, cleanup)
     x = True
     while x:
-        print("waiting")
         time.sleep(5)
 
 

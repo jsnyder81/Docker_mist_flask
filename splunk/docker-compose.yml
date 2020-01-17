@@ -49,4 +49,5 @@ services:
       - SPLUNK_TOKEN=$SPLUNK_TOKEN
     depends_on:
       - ngrok
+      - splunk
 

@@ -14,7 +14,8 @@ This leverages ngrok to spin up an inbound proxy.
 There is an authenticated version docker-compose-authenticated.yml that will leverage the ngrok auth token
 
 ### receiver_configurator
-It also spins up an instance of the receiver_configurator.  This container runs once to identify the ngrok public URL and uses your mist credentials to create a webhook receiver pointed at your ngrok instance
+It also spins up an instance of the receiver_configurator.  This container identifies the ngrok public URL and uses your mist credentials to create a webhook receiver pointed at your ngrok instance.
+It watches for the SIGTERM and deletes the webhook created during the startup.
 
 ### Requirements
 This leverages docker and docker-compose.  You should be working on 3.0+ of docker compose.
@@ -48,7 +49,7 @@ or with curl:
     
  ### Stopping the Webhook
  
-    docker-compose down
+    docker-compose stop
 
 
 ### Authenticating with NGROK
