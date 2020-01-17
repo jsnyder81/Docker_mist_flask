@@ -46,7 +46,7 @@ services:
       - MIST_API=$MIST_API
       - MIST_ORG=$MIST_ORG
       - MIST_SITE=$MIST_SITE
-      - SPLUNK_TOKEN=$SPLUNK_TOKEN
+      - SPLUNK_TOKEN=6bf1d940-ed70-4516-816e-c8eb8f3feedb
     depends_on:
       - ngrok
       - splunk

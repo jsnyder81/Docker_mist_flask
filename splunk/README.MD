@@ -2,7 +2,7 @@
 
 In this folder is a docker-compose.yml that leverages splunk as the webhook receiver.
 
-### Additional Required Environment Variables
+###Required Environment Variables
 Note: NGrok authenticated is required for this setup.
 
 
