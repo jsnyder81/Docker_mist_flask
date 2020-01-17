@@ -373,8 +373,8 @@ def CreateWebhook_splunk(site_id, webhook_url, auth_token, splunk_token):
     payload = {
     "name": "splunk",
     "type": "splunk",
-    "url": webhook_url,
-    "splunk_token": "token",
+    "url": webhook_url + "/services/collector",
+    "splunk_token": splunk_token,
     "verify_cert": False,
     "enabled": True,
     "topics": [ "location", "zone", "vbeacon", "rssizone", "asset-raw", "device-events", "alarms", "audits", "client-sessions", "device-updowns" ]}
