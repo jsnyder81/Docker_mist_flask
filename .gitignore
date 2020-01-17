@@ -257,3 +257,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# Ignore Splunk Data
+splunk/opt-splunk-var
+
+splunk/opt-splunk-etc/
+*/.DS_Store
