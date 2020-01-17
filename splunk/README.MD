@@ -7,7 +7,6 @@ Note: NGrok authenticated is required for this setup.
 
 
     export NGROK_AUTH=
-    export SPLUNK_TOKEN=
     export SPLUNK_PASSWORD=
     export MIST_API=
     export MIST_ORG=
