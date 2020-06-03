@@ -21,7 +21,7 @@ def main():
     mist_org = os.environ['MIST_ORG']
     mist_site = os.environ['MIST_SITE']
     ngrok_url = NGROK.Get_NGROK_Tunnel()
-    if os.environ['SPLUNK_TOKEN'] != "":
+    if 'SPLUNK_TOKEN' in os.environ.keys():
         webhook = Mist.CreateWebhook_splunk(mist_site, ngrok_url, mist_apikey, os.environ['SPLUNK_TOKEN'])
         print("SPLUNK WEBHOOK")
     else:

@@ -16,13 +16,13 @@ services:
   # Define an mist_flask service
   mist_flask:
     build:
-      context: ./mist_receiver/
+      context: ./webhook_receiver/
       dockerfile: dockerfile
     ports:
       - "5000:5000"
   receiver_configurator:
     build:
-      context: ./receiver_configurator/
+      context: ./mist_receiver_config/
       dockerfile: dockerfile
     environment:
       - MIST_API=$MIST_API
